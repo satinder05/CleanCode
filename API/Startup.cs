@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Filters;
 using Application.Common.Interfaces;
 using Application.Products.Commands.CreateProduct;
 using FluentValidation.AspNetCore;
@@ -34,7 +35,10 @@ namespace API
             services.AddScoped<IProductDbContext, ProductDbContext>();
 
             services
-                .AddControllers()
+                .AddControllers(options =>
+                {
+                    options.Filters.Add<ValidationFilter>();
+                })
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateProductCommandValidator>());
         }
 
