@@ -1,7 +1,10 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.Interfaces;
 using Application.Products.Commands.CreateProduct;
+using Application.Products.Commands.UpdateProduct;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -19,7 +22,7 @@ namespace API.Controllers
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public string Get(Guid id)
         {
             return "value";
         }
@@ -33,14 +36,19 @@ namespace API.Controllers
 
         // PUT api/<controller>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> Update([FromBody]UpdateProductCommand request)
         {
+            await new UpdateProductCommandHandler(_context).Handle(request, CancellationToken.None);
+            return NoContent();
         }
 
         // DELETE api/<controller>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //[HttpDelete("{id}")]
+        //[ProducesResponseType(StatusCodes.Status204NoContent)]
+        //public async Task<IActionResult> Delete(Guid id)
+        //{
+        //    return NoContent();
+        //}
     }
 }
