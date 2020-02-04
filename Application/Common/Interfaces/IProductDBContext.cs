@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Application.Common.Interfaces
 {
-    public interface IProductDBContext
+    public interface IProductDbContext
     {
         DbSet<Product> Products { get; set; }
         DbSet<ProductOption> ProductOptions { get; set; }
