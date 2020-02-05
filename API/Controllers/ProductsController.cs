@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.Interfaces;
@@ -32,7 +33,7 @@ namespace API.Controllers
             return result;
         }
 
-        [HttpGet, Route("GetByName")]
+        [HttpGet]
         public Task<ProductDetailVm> GetByName([FromQuery] string name)
         {
             var request = new GetProductDetailByNameQuery { ProductName = name };

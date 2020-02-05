@@ -6,6 +6,6 @@ namespace Application.Products.Commands.DeleteProduct
 {
     public class DeleteProductCommand
     {
-        public Guid Id { get; set; }
+        public Guid ProductId { get; set; }
     }
 }
