@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Application.Common.Interfaces;
 using Application.Products.Commands.CreateProduct;
 using Application.Products.Commands.UpdateProduct;
+using Application.Products.Queries.GetProductDetail;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,27 +16,45 @@ namespace API.Controllers
     public class ProductsController : Controller
     {
         private readonly IProductDbContext _context;
+        private readonly IMapper _mapper;
 
-        public ProductsController(IProductDbContext context)
+        public ProductsController(IProductDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        // GET api/<controller>/5
         [HttpGet("{id}")]
-        public string Get(Guid id)
+        public Task<ProductDetailVm> Get(Guid id)
         {
-            return "value";
+            var request = new GetProductDetailQuery { ProductId = id };
+            var result = new GetProductDetailQuery.GetProductDetailQueryHandler(_context, _mapper).Handle(request, CancellationToken.None);
+            return result;
         }
 
-        // POST api/<controller>
+        [HttpGet, Route("GetByName")]
+        public Task<ProductDetailVm> GetByName([FromQuery] string name)
+        {
+            var request = new GetProductDetailByNameQuery { ProductName = name };
+            var result = new GetProductDetailByNameQuery.GetProductDetailByNameQueryHandler(_context, _mapper).Handle(request, CancellationToken.None);
+            return result;
+        }
+
+        [HttpGet]
+        public Task<ProductListVm> GetAll()
+        {
+            var request = new GetProductsListQuery();
+            var result = new GetProductsListQuery.GetProductsListQueryHandler(_context, _mapper).Handle(request, CancellationToken.None);
+            return result;
+        }
+        
+
         [HttpPost]
         public async Task Post([FromBody]CreateProductCommand request)
         {
             await new CreateProductCommandHandler(_context).Handle(request, CancellationToken.None);
         }
 
-        // PUT api/<controller>/5
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Update([FromBody]UpdateProductCommand request)
