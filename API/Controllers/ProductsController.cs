@@ -1,10 +1,10 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 using API.RoutingConstraint;
 using Application.Common.Interfaces;
 using Application.Products.Commands.CreateProduct;
+using Application.Products.Commands.DeleteProduct;
 using Application.Products.Commands.UpdateProduct;
 using Application.Products.Queries.GetProductDetail;
 using AutoMapper;
@@ -66,12 +66,13 @@ namespace API.Controllers
             return NoContent();
         }
 
-        // DELETE api/<controller>/5
-        //[HttpDelete("{id}")]
-        //[ProducesResponseType(StatusCodes.Status204NoContent)]
-        //public async Task<IActionResult> Delete(Guid id)
-        //{
-        //    return NoContent();
-        //}
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var request = new DeleteProductCommand { ProductId = id };
+            await new DeleteProductCommandHandler(_context).Handle(request, CancellationToken.None);
+            return NoContent();
+        }
     }
 }
