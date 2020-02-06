@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using API.RoutingConstraint;
+using API.Common.RoutingConstraint;
 using Application.Common.Interfaces;
 using Application.Products.Commands.CreateProduct;
 using Application.Products.Commands.DeleteProduct;

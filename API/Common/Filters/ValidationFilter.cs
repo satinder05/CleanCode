@@ -4,7 +4,7 @@ using Application.Common.Models;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace API.Filters
+namespace API.Common.Filters
 {
     public class ValidationFilter : IAsyncActionFilter
     {

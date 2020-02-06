@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.ActionConstraints;
 using Microsoft.AspNetCore.Routing;
 using System;
 
-namespace API.RoutingConstraint
+namespace API.Common.RoutingConstraint
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class QueryStringConstraintAttribute : ActionMethodSelectorAttribute
