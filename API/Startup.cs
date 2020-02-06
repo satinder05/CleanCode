@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Persistence;
+using System.Linq;
 
 namespace API
 {
@@ -48,6 +49,7 @@ namespace API
             services.AddSwaggerGen(x =>
             {
                 x.SwaggerDoc("v1", new OpenApiInfo { Title = "Product API", Version = "v1" });
+                x.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
             });
         }
 

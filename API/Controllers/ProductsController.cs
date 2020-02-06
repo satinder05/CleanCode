@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
+using API.RoutingConstraint;
 using Application.Common.Interfaces;
 using Application.Products.Commands.CreateProduct;
 using Application.Products.Commands.UpdateProduct;
@@ -34,6 +35,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
+        [QueryStringConstraint("name", true)]
         public Task<ProductDetailVm> GetByName([FromQuery] string name)
         {
             var request = new GetProductDetailByNameQuery { ProductName = name };
