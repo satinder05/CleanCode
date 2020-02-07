@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Products.Queries.GetProductDetail
+namespace Application.Products.Queries
 {
     public class GetProductsListQuery
     {

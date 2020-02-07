@@ -1,17 +1,12 @@
 ﻿using Application.Common.Exceptions;
 using Application.Common.Interfaces;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Domain.Entities;
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Products.Queries.GetProductDetail
+namespace Application.Products.Queries
 {
     public class GetProductDetailQuery
     {

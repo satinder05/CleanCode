@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Application.Products.Queries.GetProductDetail
+namespace Application.Products.Queries
 {
     public class ProductListVm
     {

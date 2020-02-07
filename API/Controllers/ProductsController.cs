@@ -6,7 +6,7 @@ using Application.Common.Interfaces;
 using Application.Products.Commands.CreateProduct;
 using Application.Products.Commands.DeleteProduct;
 using Application.Products.Commands.UpdateProduct;
-using Application.Products.Queries.GetProductDetail;
+using Application.Products.Queries;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
