@@ -14,7 +14,13 @@ namespace Application.UnitTests.Products.Commands
         public async Task Handle_GivenValidRequest_ShouldCreateProduct()
         {
             //Arrange
-            CreateProductCommand request = new CreateProductCommand { Name = "Test Product", Description = "First Test Product", Price = 200.55m, DeliveryPrice = 20 };
+            CreateProductCommand request = new CreateProductCommand 
+            { 
+                Name = "Test Product", 
+                Description = "First Test Product", 
+                Price = 200.55m, 
+                DeliveryPrice = 20 
+            };
             var handler = new CreateProductCommandHandler(_context);
 
             //Act
