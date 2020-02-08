@@ -53,7 +53,7 @@ namespace API.Controllers
         
 
         [HttpPost]
-        public async Task Post([FromBody]CreateProductCommand request)
+        public async Task Create([FromBody]CreateProductCommand request)
         {
             await new CreateProductCommandHandler(_context).Handle(request, CancellationToken.None);
         }

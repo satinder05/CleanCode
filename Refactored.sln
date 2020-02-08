@@ -5,21 +5,23 @@ VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{0D625270-62AD-4097-A620-4DF0DCF69ECB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{6872B099-3E1C-4E6C-BFCF-1FE8A7A5B7FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{6872B099-3E1C-4E6C-BFCF-1FE8A7A5B7FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{54431D52-4234-43C2-8323-2269EF19BF18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{54431D52-4234-43C2-8323-2269EF19BF18}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{D4ECE88B-F492-4C57-94A0-72E66E916D88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\Persistence.csproj", "{8F0D8B81-688A-47EB-BBA2-06FC371A313C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Persistence\Persistence.csproj", "{8F0D8B81-688A-47EB-BBA2-06FC371A313C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{A57B0994-E630-4038-8B29-0EEFD2697BAE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0D67D29D-1567-4B28-94D9-4D06A6B24C8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{FED03C30-B10C-4214-9A81-718AA5AC48F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{FED03C30-B10C-4214-9A81-718AA5AC48F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.UnitTests", "Application.UnitTests\Application.UnitTests.csproj", "{4C5BBCED-69D2-481C-A56C-D4BC35652A0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.UnitTests", "Application.UnitTests\Application.UnitTests.csproj", "{4C5BBCED-69D2-481C-A56C-D4BC35652A0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.IntegrationTests", "API.IntegrationTests\API.IntegrationTests.csproj", "{242CB33D-D8F5-417C-83DC-76D978EBB28F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{4C5BBCED-69D2-481C-A56C-D4BC35652A0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C5BBCED-69D2-481C-A56C-D4BC35652A0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C5BBCED-69D2-481C-A56C-D4BC35652A0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{242CB33D-D8F5-417C-83DC-76D978EBB28F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{242CB33D-D8F5-417C-83DC-76D978EBB28F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{242CB33D-D8F5-417C-83DC-76D978EBB28F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{242CB33D-D8F5-417C-83DC-76D978EBB28F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +63,7 @@ Global
 		{8F0D8B81-688A-47EB-BBA2-06FC371A313C} = {D4ECE88B-F492-4C57-94A0-72E66E916D88}
 		{FED03C30-B10C-4214-9A81-718AA5AC48F7} = {A57B0994-E630-4038-8B29-0EEFD2697BAE}
 		{4C5BBCED-69D2-481C-A56C-D4BC35652A0D} = {0D67D29D-1567-4B28-94D9-4D06A6B24C8F}
+		{242CB33D-D8F5-417C-83DC-76D978EBB28F} = {0D67D29D-1567-4B28-94D9-4D06A6B24C8F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D1D53F93-EEAE-48B5-A49F-4FB7E5CCBC1E}
