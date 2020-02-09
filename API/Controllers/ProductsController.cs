@@ -22,8 +22,10 @@ namespace API.Controllers
 
         public ProductsController(IProductDbContext context, IMapper mapper)
         {
+            if (context == null || mapper == null)
+                throw new ArgumentNullException("Context or Mapper could not get injected.");
             _context = context;
-            _mapper = mapper;
+            _mapper = mapper;            
         }
 
         [HttpGet("{id}")]

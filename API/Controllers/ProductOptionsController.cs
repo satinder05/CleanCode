@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [Route("api/products/{id}/options")]
+    [Route("api/products/{id:Guid}/options")]
     public class ProductOptionsController : Controller
     {
         private readonly IProductDbContext _context;
@@ -23,6 +23,8 @@ namespace API.Controllers
 
         public ProductOptionsController(IProductDbContext context, IMapper mapper)
         {
+            if (context == null || mapper == null)
+                throw new ArgumentNullException("Context or Mapper could not get injected.");
             _context = context;
             _mapper = mapper;
         }
