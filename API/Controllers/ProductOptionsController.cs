@@ -30,7 +30,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public Task<ProductOptionsListVm> Get()
+        public Task<ProductOptionsListVm> GetAll()
         {
             var request = new GetProductOptionsListQuery();
             var result = new GetProductOptionsListQuery.GetProductOptionsListQueryHandler(_context, _mapper).Handle(request, CancellationToken.None);
@@ -46,7 +46,7 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task Post([FromBody]CreateProductOptionCommand request)
+        public async Task Create([FromBody]CreateProductOptionCommand request)
         {
             await new CreateProductOptionCommandHandler(_context).Handle(request, CancellationToken.None);
         }
