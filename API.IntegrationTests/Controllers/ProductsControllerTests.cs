@@ -10,6 +10,7 @@ using Shouldly;
 
 namespace API.IntegrationTests.Controllers
 {
+    [Collection("Database collection")]
     public class ProductsControllerTests : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
         private readonly HttpClient _client;
@@ -22,7 +23,7 @@ namespace API.IntegrationTests.Controllers
         [Theory]
         [InlineData("/api/products")]
         [InlineData("/api/products/8F2E9176-35EE-4F0A-AE55-83023D2DB1A3")]
-        [InlineData("/api/products?name=Samsung Galaxy S7")]
+        [InlineData("/api/products?name=Nokia New Model")]
         public async Task GetApisRouteTest(string url)
         {
             // Act
@@ -33,6 +34,7 @@ namespace API.IntegrationTests.Controllers
             Assert.Equal("application/json; charset=utf-8",
                 response.Content.Headers.ContentType.ToString());
         }
+
 
         [Fact]
         public async Task Create_GivenCreateProductCommand_ReturnsSuccessStatusCode()
@@ -100,14 +102,22 @@ namespace API.IntegrationTests.Controllers
         [Fact]
         public async Task GetByName_GivenValidProductName_ReturnsProductDetail()
         {
-            var response = await _client.GetAsync("/api/products?name=Apple iPhone 6S");
+            var response = await _client.GetAsync("/api/products?name=Samsung Galaxy S10");
 
             response.EnsureSuccessStatusCode();
 
             var result = await Utilities.GetResponseContent<ProductDetailVm>(response);
 
             result.ShouldBeOfType<ProductDetailVm>();
-            result.Name.ShouldBe("Apple iPhone 6S");
+            result.Name.ShouldBe("Samsung Galaxy S10");
+        }
+
+        [Fact]
+        public async Task Delete_GivenValidProductId_ReturnsSuccessStatusCode()
+        {
+            var response = await _client.DeleteAsync("/api/products/AE1287C0-4B15-4A7B-9D8A-DD21B3CAFEC2");
+
+            response.EnsureSuccessStatusCode();
         }
 
 
