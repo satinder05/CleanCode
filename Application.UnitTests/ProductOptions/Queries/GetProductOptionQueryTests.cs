@@ -20,12 +20,15 @@ namespace Application.UnitTests.ProductOptions.Queries
         }
 
         [Fact]
-        public async Task Handle_GivenValidProductOptionId_GetsProductOption()
+        public async Task Handle_GivenValidProductOptionId_And_ProductId_GetsProductOption()
         {
             //Arrange
             Guid productOptionId = new Guid("5BDEAB22-6BBC-43AE-9E07-2561660F4904");
+            Guid productId = new Guid("8BDEAB77-6BBC-43AE-9E07-2561660F4905");
+
             var request = new GetProductOptionQuery
             {
+                ProductId = productId,
                 ProductOptionId = productOptionId
             };
 
@@ -40,9 +43,30 @@ namespace Application.UnitTests.ProductOptions.Queries
         [Fact]
         public async Task Handle_WhenTryingToGetDetailsOfNonExistingProductOptionId_ThrowsNotFoundException()
         {
+            //Arrange
+            Guid productOptionId = Guid.NewGuid();
+            Guid productId = new Guid("8BDEAB77-6BBC-43AE-9E07-2561660F4905");
+
             var request = new GetProductOptionQuery
             {
-                ProductOptionId = new Guid()
+                ProductId = productId,
+                ProductOptionId = productOptionId
+            };
+
+            await Assert.ThrowsAsync<NotFoundException>(() => _queryHandler.Handle(request, CancellationToken.None));
+        }
+
+        [Fact]
+        public async Task Handle_WhenProductOptionId_DoesNot_BelongTo_GivenProductId_ThrowsNotFoundException()
+        {
+            //Arrange
+            Guid productOptionId = new Guid("5BDEAB22-6BBC-43AE-9E07-2561660F4904");
+            Guid productId = new Guid("8BDEAB77-6BBC-43AE-9E07-2561660F4499");
+
+            var request = new GetProductOptionQuery
+            {
+                ProductId = productId,
+                ProductOptionId = productOptionId
             };
 
             await Assert.ThrowsAsync<NotFoundException>(() => _queryHandler.Handle(request, CancellationToken.None));

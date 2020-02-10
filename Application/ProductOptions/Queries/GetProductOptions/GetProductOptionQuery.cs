@@ -10,6 +10,7 @@ namespace Application.ProductOptions.Queries.GetProductOptions
 {
     public class GetProductOptionQuery
     {
+        public Guid ProductId { get; set; }
         public Guid ProductOptionId { get; set; }
 
         public class GetProductOptionQueryHandler
@@ -28,9 +29,9 @@ namespace Application.ProductOptions.Queries.GetProductOptions
                 var productOption = await _context.ProductOptions.FindAsync(request.ProductOptionId);
 
                 if (productOption == null)
-                {
                     throw new NotFoundException(nameof(ProductOption), request.ProductOptionId);
-                }
+                if (productOption.ProductId != request.ProductId)
+                    throw new NotFoundException(nameof(ProductOption), request.ProductId);
 
                 return _mapper.Map<ProductOptionVm>(productOption);
             }

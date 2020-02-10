@@ -9,6 +9,9 @@ namespace Application.ProductOptions.Queries.GetProductOptions
             RuleFor(x => x.ProductOptionId)
                 .NotEmpty()
                 .NotNull();
+            RuleFor(x => x.ProductId)
+                .NotEmpty()
+                .NotNull();
         }
     }
 }

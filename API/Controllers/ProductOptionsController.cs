@@ -29,17 +29,17 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public Task<ProductOptionsListVm> GetAll()
+        public Task<ProductOptionsListVm> GetAll(Guid id)
         {
-            var request = new GetProductOptionsListQuery();
+            var request = new GetProductOptionsListQuery { ProductId = id };
             var result = new GetProductOptionsListQuery.GetProductOptionsListQueryHandler(_context, _mapper).Handle(request, CancellationToken.None);
             return result;
         }
 
         [HttpGet("{optionId}")]
-        public Task<ProductOptionVm> Get(Guid optionId)
+        public Task<ProductOptionVm> Get(Guid id, Guid optionId)
         {
-            var request = new GetProductOptionQuery { ProductOptionId = optionId };
+            var request = new GetProductOptionQuery { ProductId = id, ProductOptionId = optionId };
             var result = new GetProductOptionQuery.GetProductOptionQueryHandler(_context, _mapper).Handle(request, CancellationToken.None);
             return result;
         }

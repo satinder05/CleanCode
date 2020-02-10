@@ -27,5 +27,19 @@ namespace Application.UnitTests.ProductOptions.Queries
             Guid optionId = Guid.NewGuid();
             _validator.ShouldNotHaveValidationErrorFor(option => option.ProductOptionId, optionId);
         }
+
+        [Fact]
+        public void Given_Empty_ProductId_WhenValidating_ShouldError()
+        {
+            Guid productId = Guid.Empty;
+            _validator.ShouldHaveValidationErrorFor(option => option.ProductOptionId, productId);
+        }
+
+        [Fact]
+        public void Given_Valid_ProductId_WhenValidating_ShouldNotError()
+        {
+            Guid productId = Guid.NewGuid();
+            _validator.ShouldNotHaveValidationErrorFor(option => option.ProductOptionId, productId);
+        }
     }
 }
