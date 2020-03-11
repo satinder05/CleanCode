@@ -29,7 +29,7 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
-        public Task<ProductDetailVm> Get(Guid id)
+        public Task<ProductDetailVm> GetAsync(Guid id)
         {
             var request = new GetProductDetailQuery { ProductId = id };
             var result = new GetProductDetailQuery.GetProductDetailQueryHandler(_context, _mapper).Handle(request, CancellationToken.None);
@@ -38,7 +38,7 @@ namespace API.Controllers
 
         [HttpGet]
         [QueryStringConstraint("name", true)]
-        public Task<ProductDetailVm> GetByName([FromQuery] string name)
+        public Task<ProductDetailVm> GetByNameAsync([FromQuery] string name)
         {
             var request = new GetProductDetailByNameQuery { ProductName = name };
             var result = new GetProductDetailByNameQuery.GetProductDetailByNameQueryHandler(_context, _mapper).Handle(request, CancellationToken.None);
@@ -46,7 +46,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public Task<ProductListVm> GetAll()
+        public Task<ProductListVm> GetAllAsync()
         {
             var request = new GetProductsListQuery();
             var result = new GetProductsListQuery.GetProductsListQueryHandler(_context, _mapper).Handle(request, CancellationToken.None);
@@ -55,14 +55,14 @@ namespace API.Controllers
         
 
         [HttpPost]
-        public async Task Create([FromBody]CreateProductCommand request)
+        public async Task CreateAsync([FromBody]CreateProductCommand request)
         {
             await new CreateProductCommandHandler(_context).Handle(request, CancellationToken.None);
         }
 
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> Update([FromBody]UpdateProductCommand request)
+        public async Task<IActionResult> UpdateAsync([FromBody]UpdateProductCommand request)
         {
             await new UpdateProductCommandHandler(_context).Handle(request, CancellationToken.None);
             return NoContent();
@@ -70,7 +70,7 @@ namespace API.Controllers
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> DeleteAsync(Guid id)
         {
             var request = new DeleteProductCommand { ProductId = id };
             await new DeleteProductCommandHandler(_context).Handle(request, CancellationToken.None);

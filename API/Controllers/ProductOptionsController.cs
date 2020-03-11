@@ -29,7 +29,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public Task<ProductOptionsListVm> GetAll(Guid id)
+        public Task<ProductOptionsListVm> GetAllAsync(Guid id)
         {
             var request = new GetProductOptionsListQuery { ProductId = id };
             var result = new GetProductOptionsListQuery.GetProductOptionsListQueryHandler(_context, _mapper).Handle(request, CancellationToken.None);
@@ -37,7 +37,7 @@ namespace API.Controllers
         }
 
         [HttpGet("{optionId}")]
-        public Task<ProductOptionVm> Get(Guid id, Guid optionId)
+        public Task<ProductOptionVm> GetAsync(Guid id, Guid optionId)
         {
             var request = new GetProductOptionQuery { ProductId = id, ProductOptionId = optionId };
             var result = new GetProductOptionQuery.GetProductOptionQueryHandler(_context, _mapper).Handle(request, CancellationToken.None);
@@ -45,21 +45,21 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task Create([FromBody]CreateProductOptionCommand request)
+        public async Task CreateAsync([FromBody]CreateProductOptionCommand request)
         {
             await new CreateProductOptionCommandHandler(_context).Handle(request, CancellationToken.None);
         }
 
         [HttpPut("{optionId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> Update([FromBody]UpdateProductOptionCommand request)
+        public async Task<IActionResult> UpdateAsync([FromBody]UpdateProductOptionCommand request)
         {
             await new UpdateProductOptionCommandHandler(_context).Handle(request, CancellationToken.None);
             return NoContent();
         }
 
         [HttpDelete("{optionId}")]
-        public async Task<IActionResult> Delete(Guid optionId)
+        public async Task<IActionResult> DeleteAsync(Guid optionId)
         {
             var request = new DeleteProductOptionCommand { ProductOptionId = optionId };
             await new DeleteProductOptionCommandHandler(_context).Handle(request, CancellationToken.None);
